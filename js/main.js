@@ -1,10 +1,13 @@
 var $characterlist = document.querySelector('#character-list');
+var $characterview = document.querySelector('#character-view');
+var $detailview = document.querySelector('#detail-view');
+var $charactersbutton = document.querySelector('#characters-button');
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://api.genshin.dev/characters');
 xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
-  for (var i = 0; i < xhr.response.length; i++) {
+  for (let i = 0; i < xhr.response.length; i++) {
     var $character = document.createElement('div');
     $character.className = 'character';
     var $img = document.createElement('img');
@@ -20,6 +23,14 @@ xhr.addEventListener('load', function () {
     $character.appendChild($p);
     $characterlist.appendChild($character);
   }
+  var $selectCharacter = document.querySelectorAll('.character');
+  for (let i = 0; i < $selectCharacter.length; i++) {
+    $selectCharacter[i].addEventListener('click', function () {
+      $characterview.className = 'hidden';
+      $detailview.className = '';
+    });
+  }
+
 });
 xhr.send();
 
@@ -32,3 +43,8 @@ function startCase(str) {
 
   return str.join(' ');
 }
+
+$charactersbutton.addEventListener('click', function () {
+  $characterview.className = '';
+  $detailview.className = 'hidden';
+});
