@@ -68,3 +68,12 @@ p {
     font-size: 12px;
   }
 }
+
+.character {
+  margin: 10px;
+}
+
+.smole {
+  width: 106px;
+  height: 106px;
+}
