@@ -1,0 +1,36 @@
+.hidden {
+  display: none !important;
+}
+
+.container {
+  /* max-width: 575px; */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 90%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.column-full,
+.column-half {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    /* max-width: 900px; */
+  }
+
+  .column-full,
+  .column-half {
+    padding: 0 0.75rem;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+}
