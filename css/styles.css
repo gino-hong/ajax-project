@@ -40,6 +40,10 @@ h2 {
   font-size: 32px;
 }
 
+img {
+  align-self: center;
+}
+
 p {
   text-align: center;
   margin: 0;
@@ -76,4 +80,10 @@ p {
 .smole {
   width: 106px;
   height: 106px;
+}
+
+.column-half > p {
+  text-align: left;
+  font-size: 32px;
+  line-height: 1.5;
 }

@@ -27,7 +27,48 @@ xhr.addEventListener('load', function () {
   for (let i = 0; i < $selectCharacter.length; i++) {
     $selectCharacter[i].addEventListener('click', function () {
       $characterview.className = 'hidden';
-      $detailview.className = '';
+      $detailview.className = 'container row';
+      $detailview.innerHTML = '';
+      var detailXHR = new XMLHttpRequest();
+      detailXHR.open('GET', 'https://api.genshin.dev/characters/' + $selectCharacter[i].firstChild.alt);
+      detailXHR.responseType = 'json';
+      detailXHR.addEventListener('load', function () {
+        var gachaImage = document.createElement('img');
+        gachaImage.src = 'https://api.genshin.dev/characters/' + $selectCharacter[i].firstChild.alt + '/gacha-splash';
+        gachaImage.className = 'column-half';
+        var info = document.createElement('div');
+        info.className = 'column-half';
+        var $name = document.createElement('p');
+        $name.textContent = 'Name: ' + detailXHR.response.name;
+        var $vision = document.createElement('p');
+        $vision.textContent = 'Vision: ' + detailXHR.response.vision;
+        var $weapon = document.createElement('p');
+        $weapon.textContent = 'Weapon: ' + detailXHR.response.weapon;
+        var $nation = document.createElement('p');
+        $nation.textContent = 'Nation: ' + detailXHR.response.nation;
+        var $affiliation = document.createElement('p');
+        $affiliation.textContent = 'Affiliation: ' + detailXHR.response.affiliation;
+        var $rarity = document.createElement('p');
+        $rarity.textContent = 'Rarity: ' + detailXHR.response.rarity;
+        var $constellation = document.createElement('p');
+        $constellation.textContent = 'Constellation: ' + detailXHR.response.constellation;
+        var $birthday = document.createElement('p');
+        $birthday.textContent = 'Birthday: ' + detailXHR.response.birthday.substr(5);
+        var $description = document.createElement('p');
+        $description.textContent = 'Description: ' + detailXHR.response.description;
+        $detailview.appendChild(gachaImage);
+        $detailview.appendChild(info);
+        info.appendChild($name);
+        info.appendChild($vision);
+        info.appendChild($weapon);
+        info.appendChild($nation);
+        info.appendChild($affiliation);
+        info.appendChild($rarity);
+        info.appendChild($constellation);
+        info.appendChild($birthday);
+        info.appendChild($description);
+      });
+      detailXHR.send();
     });
   }
 
@@ -46,5 +87,5 @@ function startCase(str) {
 
 $charactersbutton.addEventListener('click', function () {
   $characterview.className = '';
-  $detailview.className = 'hidden';
+  $detailview.className = 'container row hidden';
 });
