@@ -8,20 +8,22 @@ xhr.open('GET', 'https://api.genshin.dev/characters');
 xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
   for (let i = 0; i < xhr.response.length; i++) {
-    var $character = document.createElement('div');
-    $character.className = 'character';
-    var $img = document.createElement('img');
-    $img.src = 'https://api.genshin.dev/characters/' + xhr.response[i] + '/icon';
-    $img.alt = xhr.response[i];
-    if ($img.alt === 'yae-miko') {
-      $img.src = 'https://api.genshin.dev/characters/yae-miko/icon-big';
-      $img.className = 'smole';
+    if (!(xhr.response[i] === 'traveler-anemo' || xhr.response[i] === 'traveler-electro' || xhr.response[i] === 'traveler-geo')) {
+      var $character = document.createElement('div');
+      $character.className = 'character';
+      var $img = document.createElement('img');
+      $img.src = 'https://api.genshin.dev/characters/' + xhr.response[i] + '/icon';
+      $img.alt = xhr.response[i];
+      if ($img.alt === 'yae-miko') {
+        $img.src = 'https://api.genshin.dev/characters/yae-miko/icon-big';
+        $img.className = 'smole';
+      }
+      var $p = document.createElement('p');
+      $p.textContent = startCase(xhr.response[i]);
+      $character.appendChild($img);
+      $character.appendChild($p);
+      $characterlist.appendChild($character);
     }
-    var $p = document.createElement('p');
-    $p.textContent = startCase(xhr.response[i]);
-    $character.appendChild($img);
-    $character.appendChild($p);
-    $characterlist.appendChild($character);
   }
   var $selectCharacter = document.querySelectorAll('.character');
   for (let i = 0; i < $selectCharacter.length; i++) {

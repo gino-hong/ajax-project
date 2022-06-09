@@ -50,7 +50,6 @@ p {
 }
 
 .column-half > p {
-  text-align: left;
   font-size: 32px;
   line-height: 1.5;
 }
@@ -59,7 +58,7 @@ span {
   color: #ffee75;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   h1,
   h2,
   li,
