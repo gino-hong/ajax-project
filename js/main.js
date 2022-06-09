@@ -37,6 +37,9 @@ xhr.addEventListener('load', function () {
       detailXHR.addEventListener('load', function () {
         var gachaImage = document.createElement('img');
         gachaImage.src = 'https://api.genshin.dev/characters/' + $selectCharacter[i].firstChild.alt + '/gacha-splash';
+        if ($selectCharacter[i].firstChild.alt === 'thoma') {
+          gachaImage.src = 'https://api.genshin.dev/characters/thoma/portrait';
+        }
         gachaImage.className = 'column-half';
         var info = document.createElement('div');
         info.className = 'column-half';
