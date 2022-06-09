@@ -49,10 +49,21 @@ p {
   margin: 0;
 }
 
+.column-half > p {
+  text-align: left;
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+span {
+  color: #ffee75;
+}
+
 @media only screen and (max-width: 768px) {
   h1,
   h2,
-  li {
+  li,
+  .column-half > p {
     font-size: 24px;
   }
 }
@@ -60,7 +71,8 @@ p {
 @media only screen and (max-width: 480px) {
   h1,
   h2,
-  li {
+  li,
+  .column-half > p {
     font-size: 16px;
   }
 }
@@ -68,7 +80,8 @@ p {
 @media only screen and (max-width: 360px) {
   h1,
   h2,
-  li {
+  li,
+  .column-half > p {
     font-size: 12px;
   }
 }
@@ -80,10 +93,4 @@ p {
 .smole {
   width: 106px;
   height: 106px;
-}
-
-.column-half > p {
-  text-align: left;
-  font-size: 32px;
-  line-height: 1.5;
 }
