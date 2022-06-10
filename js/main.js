@@ -2,7 +2,9 @@ var $characterlist = document.querySelector('#character-list');
 var $favoritelist = document.querySelector('#favorite-list');
 var $characterview = document.querySelector('#character-view');
 var $detailview = document.querySelector('#detail-view');
+var $favoriteview = document.querySelector('#favorite-view');
 var $charactersbutton = document.querySelector('#characters-button');
+var $favoritesbutton = document.querySelector('#favorites-button');
 var $addButton = document.querySelector('#add-button');
 var value;
 
@@ -20,6 +22,7 @@ xhr.addEventListener('load', function () {
     $selectCharacter[i].addEventListener('click', function () {
       $characterview.className = 'hidden';
       $detailview.className = 'container row';
+      $favoriteview.className = 'hidden';
       $detailview.innerHTML = '';
       value = $selectCharacter[i].firstChild.alt;
       $addButton.className = '';
@@ -88,7 +91,15 @@ $charactersbutton.addEventListener('click', function () {
   $addButton.className = 'hidden';
 });
 
+$favoritesbutton.addEventListener('click', function () {
+  $favoriteview.className = '';
+  $characterview.className = 'hidden';
+});
+
 $addButton.addEventListener('click', function () {
+  $favoriteview.className = '';
+  $detailview.className = 'container row hidden';
+  $addButton.className = 'hidden';
   var counter = 0;
   if (data.favorites.length === undefined) {
     data.favorites.push(value);
