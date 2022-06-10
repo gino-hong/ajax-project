@@ -40,15 +40,29 @@ h2 {
   font-size: 32px;
 }
 
+img {
+  align-self: center;
+}
+
 p {
   text-align: center;
   margin: 0;
 }
 
-@media only screen and (max-width: 768px) {
+.column-half > p {
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+span {
+  color: #ffee75;
+}
+
+@media only screen and (max-width: 900px) {
   h1,
   h2,
-  li {
+  li,
+  .column-half > p {
     font-size: 24px;
   }
 }
@@ -56,7 +70,8 @@ p {
 @media only screen and (max-width: 480px) {
   h1,
   h2,
-  li {
+  li,
+  .column-half > p {
     font-size: 16px;
   }
 }
@@ -64,7 +79,8 @@ p {
 @media only screen and (max-width: 360px) {
   h1,
   h2,
-  li {
+  li,
+  .column-half > p {
     font-size: 12px;
   }
 }
