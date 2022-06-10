@@ -3,6 +3,7 @@ var $characterview = document.querySelector('#character-view');
 var $detailview = document.querySelector('#detail-view');
 var $charactersbutton = document.querySelector('#characters-button');
 var $addButton = document.querySelector('#add-button');
+var value;
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://api.genshin.dev/characters');
@@ -32,14 +33,15 @@ xhr.addEventListener('load', function () {
       $characterview.className = 'hidden';
       $detailview.className = 'container row';
       $detailview.innerHTML = '';
+      value = $selectCharacter[i].firstChild.alt;
       $addButton.className = '';
       var detailXHR = new XMLHttpRequest();
-      detailXHR.open('GET', 'https://api.genshin.dev/characters/' + $selectCharacter[i].firstChild.alt);
+      detailXHR.open('GET', 'https://api.genshin.dev/characters/' + value);
       detailXHR.responseType = 'json';
       detailXHR.addEventListener('load', function () {
         var gachaImage = document.createElement('img');
-        gachaImage.src = 'https://api.genshin.dev/characters/' + $selectCharacter[i].firstChild.alt + '/gacha-splash';
-        if ($selectCharacter[i].firstChild.alt === 'thoma') {
+        gachaImage.src = 'https://api.genshin.dev/characters/' + value + '/gacha-splash';
+        if (value === 'thoma') {
           gachaImage.src = 'https://api.genshin.dev/characters/thoma/portrait';
         }
         gachaImage.className = 'column-half';
@@ -96,4 +98,8 @@ $charactersbutton.addEventListener('click', function () {
   $characterview.className = '';
   $detailview.className = 'container row hidden';
   $addButton.className = 'hidden';
+});
+
+$addButton.addEventListener('click', function () {
+  data.favorites.push(value);
 });
