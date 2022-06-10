@@ -109,5 +109,6 @@ $addButton.addEventListener('click', function () {
   }
   if (counter === 0) {
     data.favorites.push(value);
+    data.favorites.sort();
   }
 });
