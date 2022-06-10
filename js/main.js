@@ -89,10 +89,13 @@ $charactersbutton.addEventListener('click', function () {
   $characterview.className = '';
   $detailview.className = 'container row hidden';
   $addButton.className = 'hidden';
+  $favoriteview.className = 'hidden';
 });
 
 $favoritesbutton.addEventListener('click', function () {
   $favoriteview.className = '';
+  $detailview.className = 'container row hidden';
+  $addButton.className = 'hidden';
   $characterview.className = 'hidden';
 });
 
@@ -144,6 +147,9 @@ function buildIcon(name, list) {
 
 window.addEventListener('load', function () {
   if (!(data.favorites.length === undefined)) {
+    if (data.favorites.length > 0) {
+      $favoritelist.innerHTML = '';
+    }
     for (let i = 0; i < data.favorites.length; i++) {
       buildIcon(data.favorites[i], $favoritelist);
     }
