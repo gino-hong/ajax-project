@@ -2,6 +2,7 @@ var $characterlist = document.querySelector('#character-list');
 var $characterview = document.querySelector('#character-view');
 var $detailview = document.querySelector('#detail-view');
 var $charactersbutton = document.querySelector('#characters-button');
+var $addButton = document.querySelector('#add-button');
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://api.genshin.dev/characters');
@@ -31,6 +32,7 @@ xhr.addEventListener('load', function () {
       $characterview.className = 'hidden';
       $detailview.className = 'container row';
       $detailview.innerHTML = '';
+      $addButton.className = '';
       var detailXHR = new XMLHttpRequest();
       detailXHR.open('GET', 'https://api.genshin.dev/characters/' + $selectCharacter[i].firstChild.alt);
       detailXHR.responseType = 'json';
@@ -93,4 +95,5 @@ function startCase(str) {
 $charactersbutton.addEventListener('click', function () {
   $characterview.className = '';
   $detailview.className = 'container row hidden';
+  $addButton.className = 'hidden';
 });
