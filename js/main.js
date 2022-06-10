@@ -101,5 +101,13 @@ $charactersbutton.addEventListener('click', function () {
 });
 
 $addButton.addEventListener('click', function () {
-  data.favorites.push(value);
+  var counter = 0;
+  for (let i = 0; i < data.favorites.length; i++) {
+    if (value === data.favorites[i]) {
+      counter++;
+    }
+  }
+  if (counter === 0) {
+    data.favorites.push(value);
+  }
 });
