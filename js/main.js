@@ -17,61 +17,7 @@ xhr.addEventListener('load', function () {
       buildIcon(xhr.response[i], $characterlist);
     }
   }
-  var $selectCharacter = document.querySelectorAll('.character');
-  for (let i = 0; i < $selectCharacter.length; i++) {
-    $selectCharacter[i].addEventListener('click', function () {
-      $characterview.className = 'hidden';
-      $detailview.className = 'container row';
-      $favoriteview.className = 'hidden';
-      $detailview.innerHTML = '';
-      value = $selectCharacter[i].firstChild.alt;
-      $addButton.className = '';
-      var detailXHR = new XMLHttpRequest();
-      detailXHR.open('GET', 'https://api.genshin.dev/characters/' + value);
-      detailXHR.responseType = 'json';
-      detailXHR.addEventListener('load', function () {
-        var gachaImage = document.createElement('img');
-        gachaImage.src = 'https://api.genshin.dev/characters/' + value + '/gacha-splash';
-        if (value === 'thoma') {
-          gachaImage.src = 'https://api.genshin.dev/characters/thoma/portrait';
-        }
-        gachaImage.className = 'column-half';
-        var info = document.createElement('div');
-        info.className = 'column-half';
-        var $name = document.createElement('p');
-        $name.innerHTML = 'Name: <span>' + detailXHR.response.name + '</span>';
-        var $vision = document.createElement('p');
-        $vision.innerHTML = 'Vision: <span>' + detailXHR.response.vision + '</span>';
-        var $weapon = document.createElement('p');
-        $weapon.innerHTML = 'Weapon: <span>' + detailXHR.response.weapon + '</span>';
-        var $nation = document.createElement('p');
-        $nation.innerHTML = 'Nation: <span>' + detailXHR.response.nation + '</span>';
-        var $affiliation = document.createElement('p');
-        $affiliation.innerHTML = 'Affiliation: <span>' + detailXHR.response.affiliation + '</span>';
-        var $rarity = document.createElement('p');
-        $rarity.innerHTML = 'Rarity: <span>' + detailXHR.response.rarity + '</span>';
-        var $constellation = document.createElement('p');
-        $constellation.innerHTML = 'Constellation: <span>' + detailXHR.response.constellation + '</span>';
-        var $birthday = document.createElement('p');
-        $birthday.innerHTML = 'Birthday: <span>' + detailXHR.response.birthday.substr(5) + '</span>';
-        var $description = document.createElement('p');
-        $description.innerHTML = 'Description: <span>' + detailXHR.response.description + '</span>';
-        $detailview.appendChild(gachaImage);
-        $detailview.appendChild(info);
-        info.appendChild($name);
-        info.appendChild($vision);
-        info.appendChild($weapon);
-        info.appendChild($nation);
-        info.appendChild($affiliation);
-        info.appendChild($rarity);
-        info.appendChild($constellation);
-        info.appendChild($birthday);
-        info.appendChild($description);
-      });
-      detailXHR.send();
-    });
-  }
-
+  buildDetails();
 });
 xhr.send();
 
@@ -155,3 +101,60 @@ window.addEventListener('load', function () {
     }
   }
 });
+
+function buildDetails() {
+  var $selectCharacter = document.querySelectorAll('.character');
+  for (let i = 0; i < $selectCharacter.length; i++) {
+    $selectCharacter[i].addEventListener('click', function () {
+      $characterview.className = 'hidden';
+      $detailview.className = 'container row';
+      $favoriteview.className = 'hidden';
+      $detailview.innerHTML = '';
+      value = $selectCharacter[i].firstChild.alt;
+      $addButton.className = '';
+      var detailXHR = new XMLHttpRequest();
+      detailXHR.open('GET', 'https://api.genshin.dev/characters/' + value);
+      detailXHR.responseType = 'json';
+      detailXHR.addEventListener('load', function () {
+        var gachaImage = document.createElement('img');
+        gachaImage.src = 'https://api.genshin.dev/characters/' + value + '/gacha-splash';
+        if (value === 'thoma') {
+          gachaImage.src = 'https://api.genshin.dev/characters/thoma/portrait';
+        }
+        gachaImage.className = 'column-half';
+        var info = document.createElement('div');
+        info.className = 'column-half';
+        var $name = document.createElement('p');
+        $name.innerHTML = 'Name: <span>' + detailXHR.response.name + '</span>';
+        var $vision = document.createElement('p');
+        $vision.innerHTML = 'Vision: <span>' + detailXHR.response.vision + '</span>';
+        var $weapon = document.createElement('p');
+        $weapon.innerHTML = 'Weapon: <span>' + detailXHR.response.weapon + '</span>';
+        var $nation = document.createElement('p');
+        $nation.innerHTML = 'Nation: <span>' + detailXHR.response.nation + '</span>';
+        var $affiliation = document.createElement('p');
+        $affiliation.innerHTML = 'Affiliation: <span>' + detailXHR.response.affiliation + '</span>';
+        var $rarity = document.createElement('p');
+        $rarity.innerHTML = 'Rarity: <span>' + detailXHR.response.rarity + '</span>';
+        var $constellation = document.createElement('p');
+        $constellation.innerHTML = 'Constellation: <span>' + detailXHR.response.constellation + '</span>';
+        var $birthday = document.createElement('p');
+        $birthday.innerHTML = 'Birthday: <span>' + detailXHR.response.birthday.substr(5) + '</span>';
+        var $description = document.createElement('p');
+        $description.innerHTML = 'Description: <span>' + detailXHR.response.description + '</span>';
+        $detailview.appendChild(gachaImage);
+        $detailview.appendChild(info);
+        info.appendChild($name);
+        info.appendChild($vision);
+        info.appendChild($weapon);
+        info.appendChild($nation);
+        info.appendChild($affiliation);
+        info.appendChild($rarity);
+        info.appendChild($constellation);
+        info.appendChild($birthday);
+        info.appendChild($description);
+      });
+      detailXHR.send();
+    });
+  }
+}
