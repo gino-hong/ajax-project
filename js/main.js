@@ -57,6 +57,7 @@ $addButton.addEventListener('click', function () {
     for (let i = 0; i < data.favorites.length; i++) {
       buildIcon(data.favorites[i], $favoritelist);
     }
+    buildDetails();
   } else {
     for (let i = 0; i < data.favorites.length; i++) {
       if (value === data.favorites[i]) {
@@ -70,6 +71,7 @@ $addButton.addEventListener('click', function () {
       for (let i = 0; i < data.favorites.length; i++) {
         buildIcon(data.favorites[i], $favoritelist);
       }
+      buildDetails();
     }
   }
 });
