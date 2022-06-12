@@ -18,7 +18,7 @@ xhr.addEventListener('load', function () {
       buildIcon(xhr.response[i], $characterlist);
     }
   }
-  buildDetails();
+  buildDetails('.character');
 });
 xhr.send();
 
@@ -59,9 +59,9 @@ $addButton.addEventListener('click', function () {
     data.favorites.sort();
     $favoritelist.innerHTML = '';
     for (let i = 0; i < data.favorites.length; i++) {
-      buildIcon(data.favorites[i], $favoritelist);
+      buildFavIcon(data.favorites[i], $favoritelist);
     }
-    buildDetails();
+    buildDetails('.fav');
   } else {
     for (let i = 0; i < data.favorites.length; i++) {
       if (value === data.favorites[i]) {
@@ -73,16 +73,54 @@ $addButton.addEventListener('click', function () {
       data.favorites.sort();
       $favoritelist.innerHTML = '';
       for (let i = 0; i < data.favorites.length; i++) {
-        buildIcon(data.favorites[i], $favoritelist);
+        buildFavIcon(data.favorites[i], $favoritelist);
       }
-      buildDetails();
+      buildDetails('.fav');
     }
+  }
+});
+
+$removeButton.addEventListener('click', function () {
+  $favoriteview.className = '';
+  $detailview.className = 'container row hidden';
+  $addButton.className = 'hidden';
+  $removeButton.className = 'hidden';
+  for (let i = 0; i < data.favorites.length; i++) {
+    if (data.favorites[i] === value) {
+      data.favorites.splice(i, 1);
+    }
+  }
+  $favoritelist.innerHTML = '';
+  if (data.favorites.length > 0) {
+    for (let i = 0; i < data.favorites.length; i++) {
+      buildFavIcon(data.favorites[i], $favoritelist);
+    }
+    buildDetails('.fav');
+  } else {
+    $favoritelist.innerHTML = '<p>No favorites have been added.</p>';
   }
 });
 
 function buildIcon(name, list) {
   var $character = document.createElement('div');
   $character.className = 'character';
+  var $img = document.createElement('img');
+  $img.src = 'https://api.genshin.dev/characters/' + name + '/icon';
+  $img.alt = name;
+  if ($img.alt === 'yae-miko') {
+    $img.src = 'https://api.genshin.dev/characters/yae-miko/icon-big';
+    $img.className = 'smole';
+  }
+  var $p = document.createElement('p');
+  $p.textContent = startCase(name);
+  $character.appendChild($img);
+  $character.appendChild($p);
+  list.appendChild($character);
+}
+
+function buildFavIcon(name, list) {
+  var $character = document.createElement('div');
+  $character.className = 'fav';
   var $img = document.createElement('img');
   $img.src = 'https://api.genshin.dev/characters/' + name + '/icon';
   $img.alt = name;
@@ -108,8 +146,8 @@ window.addEventListener('load', function () {
   }
 });
 
-function buildDetails() {
-  var $selectCharacter = document.querySelectorAll('.character');
+function buildDetails(char) {
+  var $selectCharacter = document.querySelectorAll(char);
   for (let i = 0; i < $selectCharacter.length; i++) {
     $selectCharacter[i].addEventListener('click', function () {
       $characterview.className = 'hidden';
