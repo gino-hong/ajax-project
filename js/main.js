@@ -6,6 +6,7 @@ var $favoriteview = document.querySelector('#favorite-view');
 var $charactersbutton = document.querySelector('#characters-button');
 var $favoritesbutton = document.querySelector('#favorites-button');
 var $addButton = document.querySelector('#add-button');
+var $removeButton = document.querySelector('#remove-button');
 var value;
 
 var xhr = new XMLHttpRequest();
@@ -35,6 +36,7 @@ $charactersbutton.addEventListener('click', function () {
   $characterview.className = '';
   $detailview.className = 'container row hidden';
   $addButton.className = 'hidden';
+  $removeButton.className = 'hidden';
   $favoriteview.className = 'hidden';
 });
 
@@ -42,6 +44,7 @@ $favoritesbutton.addEventListener('click', function () {
   $favoriteview.className = '';
   $detailview.className = 'container row hidden';
   $addButton.className = 'hidden';
+  $removeButton.className = 'hidden';
   $characterview.className = 'hidden';
 });
 
@@ -49,6 +52,7 @@ $addButton.addEventListener('click', function () {
   $favoriteview.className = '';
   $detailview.className = 'container row hidden';
   $addButton.className = 'hidden';
+  $removeButton.className = 'hidden';
   var counter = 0;
   if (data.favorites.length === undefined) {
     data.favorites.push(value);
@@ -113,7 +117,16 @@ function buildDetails() {
       $favoriteview.className = 'hidden';
       $detailview.innerHTML = '';
       value = $selectCharacter[i].firstChild.alt;
-      $addButton.className = '';
+      for (let i = 0; i < data.favorites.length; i++) {
+        if (value === data.favorites[i]) {
+          $removeButton.className = '';
+        }
+      }
+      if ($removeButton.className === '') {
+        $addButton.className = 'hidden';
+      } else {
+        $addButton.className = '';
+      }
       var detailXHR = new XMLHttpRequest();
       detailXHR.open('GET', 'https://api.genshin.dev/characters/' + value);
       detailXHR.responseType = 'json';
