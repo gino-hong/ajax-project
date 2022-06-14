@@ -177,24 +177,61 @@ function buildDetails(char) {
         gachaImage.className = 'column-half';
         var info = document.createElement('div');
         info.className = 'column-half';
+
         var $name = document.createElement('p');
-        $name.innerHTML = 'Name: <span>' + detailXHR.response.name + '</span>';
+        $name.textContent = 'Name: ';
+        var $nameValue = document.createElement('span');
+        $nameValue.textContent = detailXHR.response.name;
+        $name.appendChild($nameValue);
+
         var $vision = document.createElement('p');
-        $vision.innerHTML = 'Vision: <span>' + detailXHR.response.vision + '</span>';
+        $vision.textContent = 'Vision: ';
+        var $visionValue = document.createElement('span');
+        $visionValue.textContent = detailXHR.response.vision;
+        $vision.appendChild($visionValue);
+
         var $weapon = document.createElement('p');
-        $weapon.innerHTML = 'Weapon: <span>' + detailXHR.response.weapon + '</span>';
+        $weapon.textContent = 'Weapon: ';
+        var $weaponValue = document.createElement('span');
+        $weaponValue.textContent = detailXHR.response.weapon;
+        $weapon.appendChild($weaponValue);
+
         var $nation = document.createElement('p');
-        $nation.innerHTML = 'Nation: <span>' + detailXHR.response.nation + '</span>';
+        $nation.textContent = 'Nation: ';
+        var $nationValue = document.createElement('span');
+        $nationValue.textContent = detailXHR.response.nation;
+        $nation.appendChild($nationValue);
+
         var $affiliation = document.createElement('p');
-        $affiliation.innerHTML = 'Affiliation: <span>' + detailXHR.response.affiliation + '</span>';
+        $affiliation.textContent = 'Affiliation: ';
+        var $affiliationValue = document.createElement('span');
+        $affiliationValue.textContent = detailXHR.response.affiliation;
+        $affiliation.appendChild($affiliationValue);
+
         var $rarity = document.createElement('p');
-        $rarity.innerHTML = 'Rarity: <span>' + detailXHR.response.rarity + '</span>';
+        $rarity.textContent = 'Rarity: ';
+        var $rarityValue = document.createElement('span');
+        $rarityValue.textContent = detailXHR.response.rarity;
+        $rarity.appendChild($rarityValue);
+
         var $constellation = document.createElement('p');
-        $constellation.innerHTML = 'Constellation: <span>' + detailXHR.response.constellation + '</span>';
+        $constellation.textContent = 'Constellation: ';
+        var $constellationValue = document.createElement('span');
+        $constellationValue.textContent = detailXHR.response.constellation;
+        $constellation.appendChild($constellationValue);
+
         var $birthday = document.createElement('p');
-        $birthday.innerHTML = 'Birthday: <span>' + detailXHR.response.birthday.substr(5) + '</span>';
+        $birthday.textContent = 'Birthday: ';
+        var $birthdayValue = document.createElement('span');
+        $birthdayValue.textContent = detailXHR.response.birthday.substr(5);
+        $birthday.appendChild($birthdayValue);
+
         var $description = document.createElement('p');
-        $description.innerHTML = 'Description: <span>' + detailXHR.response.description + '</span>';
+        $description.textContent = 'Description: ';
+        var $descriptionValue = document.createElement('span');
+        $descriptionValue.textContent = detailXHR.response.description;
+        $description.appendChild($descriptionValue);
+
         $detailview.appendChild(gachaImage);
         $detailview.appendChild(info);
         info.appendChild($name);
